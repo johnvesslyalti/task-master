@@ -9,10 +9,17 @@ connectDB();
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
+
+const allowedOrigin = 'https://task-master-47nd3j8ux-johnvessly-altis-projects.vercel.app';
+
+app.use(cors({
+    origin: allowedOrigin,
+    credentials: true // only if you use cookies/auth
+  }));
 
 const PORT = process.env.PORT || 5000;
 
