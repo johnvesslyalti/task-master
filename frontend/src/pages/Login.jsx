@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../../utils/api";
 import { AuthContext } from "../context/AuthContext";
 import { GoArrowLeft } from "react-icons/go";
+import api from "../utils/api";
 
 export default function Login() {
   const [email, setEmail] = useState('');

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import api from "../../utils/api";
 import { GoArrowLeft } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
+import api from "../utils/api";
 
 export default function Register() {
   const [name, setName] = useState('');

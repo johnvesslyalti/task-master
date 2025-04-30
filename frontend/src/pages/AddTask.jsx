@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { AuthContext } from "../context/AuthContext";
 import { GoArrowLeft } from "react-icons/go";
 import { useNavigate, useParams } from "react-router-dom";
-import api from "../../utils/api";
+import api from "../utils/api";
 
 
 export default function AddTask() {
