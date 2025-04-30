@@ -9,8 +9,6 @@ router.route('/')
     .post(protect, createTask);
 
 router.route('/:id')
-    .get(protect, getTask)
-    .put(protect, updateTask)
     .delete(protect, deleteTask);
 
 export default router;

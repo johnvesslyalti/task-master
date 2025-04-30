@@ -9,15 +9,6 @@ export const getTasks = async (req, res) => {
     }
 }
 
-export const getTask = async (req, res) => {
-    try{
-        const task = await Task.findOne({ _id: req.params.id, user: req.user.id });
-        res.status(200).json(task);
-    } catch(error) {
-        res.status(500).json({message: error.message});
-    }
-}
-
 export const createTask = async (req, res) => {
     try {
         const task = await Task.create({
@@ -28,19 +19,6 @@ export const createTask = async (req, res) => {
         });
         res.status(201).json(task);
     } catch(error) {
-        res.status(500).json({message: error.message});
-    }
-}
-
-export const updateTask = async (req, res) => {
-    try {
-        const task = await Task.findByIdAndUpdate({
-            _id: req.params.id,
-            user: req.user.id
-        }, req.body, {
-            new: true,
-        });
-    } catch (error) {
         res.status(500).json({message: error.message});
     }
 }
