@@ -11,7 +11,7 @@ export default function Login() {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false); // <-- new
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,10 +29,10 @@ export default function Login() {
       const { token, user } = response.data;
 
       login(token, user.name);
-      setSuccess(true); // Show success popup
+      setSuccess(true);
       setTimeout(() => {
         navigate(`/${user.name}/dashboard`);
-      }, 2000); // Navigate after 2 seconds
+      }, 2000);
     } catch (error) {
       console.error(error);
       setError('Login failed. Please check your credentials.');
@@ -42,11 +42,16 @@ export default function Login() {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center bg-gradient-to-br from-amber-100 to-white relative">
-        <button type="button" onClick={() => navigate(-1)} className="flex absolute top-6 left-6 items-center text-amber-600 hover:text-amber-800 transition duration-200 cursor-pointer">
-                    <GoArrowLeft className="text-xl mr-2" />
-                    <span>Back</span>
-                </button>
+    <div className="h-screen flex justify-center items-center bg-gradient-to-br from-gray-800 to-gray-700 relative text-gray-200">
+      <button
+        type="button"
+        onClick={() => navigate(-1)}
+        className="flex absolute top-6 left-6 items-center text-amber-400 hover:text-amber-500 transition duration-200 cursor-pointer"
+      >
+        <GoArrowLeft className="text-xl mr-2" />
+        <span>Back</span>
+      </button>
+
       {success && (
         <div className="absolute top-10 bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg text-lg animate-bounce">
           Login Successful!
@@ -55,35 +60,35 @@ export default function Login() {
 
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-5 w-full max-w-md bg-white p-8 rounded-3xl shadow-2xl"
+        className="flex flex-col gap-5 w-full max-w-md bg-gray-800 p-8 rounded-3xl shadow-xl"
       >
-        <h1 className="text-3xl font-bold text-center text-amber-600 mb-2">Welcome Back</h1>
-        <p className="text-center text-gray-500 mb-6">Login to your account</p>
+        <h1 className="text-3xl font-bold text-center text-amber-300 mb-2">Welcome Back</h1>
+        <p className="text-center text-gray-400 mb-6">Login to your account</p>
 
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           type="email"
           placeholder="Email"
-          className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-amber-500"
+          className="bg-gray-700 border border-gray-600 p-3 rounded-lg focus:outline-none focus:border-amber-400 placeholder-gray-400 text-white"
         />
         <input
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="Password"
-          className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-amber-500"
+          className="bg-gray-700 border border-gray-600 p-3 rounded-lg focus:outline-none focus:border-amber-400 placeholder-gray-400 text-white"
         />
 
         <button
           type="submit"
-          className="bg-amber-500 hover:bg-amber-600 transition-all duration-300 p-3 rounded-xl text-white font-semibold shadow-md flex items-center justify-center cursor-pointer"
+          className="bg-amber-400 hover:bg-amber-500 transition-all duration-300 p-3 rounded-xl text-gray-900 font-semibold shadow-md flex items-center justify-center cursor-pointer"
           disabled={loading}
         >
           {loading ? "Logging in..." : "Login"}
         </button>
 
-        {error && <p className="text-red-500 text-center mt-2">{error}</p>}
+        {error && <p className="text-red-400 text-center mt-2">{error}</p>}
       </form>
     </div>
   );
