@@ -12,8 +12,7 @@ const app = express();
 
 // ✅ Setup CORS before routes
 const allowedOrigins = [
-    'https://task-master-johnvessly-altis-projects.vercel.app',
-    'https://task-master-lime.vercel.app'
+    'https://task-master-johnvessly-altis-projects.vercel.app'
 ];
   
 app.use(cors({
