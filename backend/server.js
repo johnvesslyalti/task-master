@@ -12,21 +12,20 @@ const app = express();
 
 // ✅ Setup CORS before routes
 const allowedOrigins = [
-    'https://task-master-johnvessly-altis-projects.vercel.app/',
+    'https://task-master-johnvessly-altis-projects.vercel.app',
     'https://task-master-lime.vercel.app'
-  ];
+];
   
-  app.use(cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true
-  }));
-  
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
 
 app.use(express.json());
 
