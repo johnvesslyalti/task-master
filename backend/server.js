@@ -10,11 +10,11 @@ connectDB();
 
 const app = express();
 
-// ✅ Setup CORS before routes
+// ✅ CORS Setup
 const allowedOrigins = [
-    'https://task-master-johnvessly-altis-projects.vercel.app'
+    'https://task-master-delta-nine.vercel.app'  // Ensure no trailing slash
 ];
-  
+
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -23,7 +23,7 @@ app.use(cors({
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true
+  credentials: true // If using cookies or authentication headers
 }));
 
 app.use(express.json());
@@ -34,5 +34,5 @@ app.use("/api/tasks", taskRoutes);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`server running on port ${PORT}`);
+  console.log(`server running on port ${PORT}`);
 });
