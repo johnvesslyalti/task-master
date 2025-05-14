@@ -12,7 +12,7 @@ const app = express();
 
 // ✅ CORS Setup
 const allowedOrigins = [
-    'https://task-master-delta-nine.vercel.app'  // Ensure no trailing slash
+    'https://task-master-tau-five.vercel.app'  // Ensure no trailing slash
 ];
 
 app.use(cors({
