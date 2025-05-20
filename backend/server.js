@@ -12,7 +12,8 @@ const app = express();
 
 // ✅ CORS Setup
 const allowedOrigins = [
-    'https://task-master-tau-five.vercel.app'  // Ensure no trailing slash
+    'https://task-master-tau-five.vercel.app',
+    'http://localhost:5173'  // Ensure no trailing slash
 ];
 
 app.use(cors({

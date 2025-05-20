@@ -87,8 +87,8 @@ export default function AddTask() {
           onChange={(e) => setStatus(e.target.value)}
           className="border border-gray-500 p-3 rounded-lg focus:outline-none focus:border-amber-400"
         >
-          <option value="pending">Pending</option>
-          <option value="completed">Completed</option>
+          <option value="pending" className="bg-black">Pending</option>
+          <option value="completed" className="bg-black">Completed</option>
         </select>
 
         <button

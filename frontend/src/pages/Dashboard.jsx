@@ -103,7 +103,7 @@ export default function Dashboard() {
             <div
               key={task._id}
               className={`p-6 rounded-2xl shadow-md hover:shadow-lg transition duration-300 cursor-pointer flex flex-col justify-between h-50 ${
-                task.status === "completed" ? "bg-green-100" : "bg-gray-700"
+                task.status === "completed" ? "bg-green-950" : "bg-gray-700"
               }`}
             >
               <div className="overflow-hidden">

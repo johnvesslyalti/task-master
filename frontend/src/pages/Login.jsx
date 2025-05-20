@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { GoArrowLeft } from "react-icons/go";
 import api from "../utils/api";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -12,6 +13,11 @@ export default function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,13 +78,22 @@ export default function Login() {
           placeholder="Email"
           className="bg-gray-700 border border-gray-600 p-3 rounded-lg focus:outline-none focus:border-amber-400 placeholder-gray-400 text-white"
         />
-        <input
+        <div className="relative">
+          <input
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          type="password"
+          type={showPassword ? "text" : "password"}
           placeholder="Password"
-          className="bg-gray-700 border border-gray-600 p-3 rounded-lg focus:outline-none focus:border-amber-400 placeholder-gray-400 text-white"
-        />
+          className="bg-gray-700 w-full border border-gray-600 p-3 rounded-lg focus:outline-none focus:border-amber-400 placeholder-gray-400 text-white"
+          />
+          <button
+            type="button"
+            onClick={handleShowPassword}
+            className="absolute top-1/2 right-3 transform -translate-y-1/2 text-xl text-gray-400 hover:text-white"
+            >
+            {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+          </button>
+        </div>
 
         <button
           type="submit"

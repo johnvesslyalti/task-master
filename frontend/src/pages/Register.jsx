@@ -2,6 +2,7 @@ import { useState } from "react";
 import { GoArrowLeft } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import api from "../utils/api";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -9,6 +10,11 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,6 +24,9 @@ export default function Register() {
       setEmail('');
       setPassword('');
       setMessage("Registration successful! Please login.");
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
     } catch (error) {
       console.error(error);
       setMessage("Registration failed. Please try again.");
@@ -56,17 +65,27 @@ export default function Register() {
           placeholder="Email"
           className="bg-gray-700 border border-gray-600 p-3 rounded-lg focus:outline-none focus:border-amber-400 placeholder-gray-400 text-white"
         />
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          type="password"
-          placeholder="Password"
-          className="bg-gray-700 border border-gray-600 p-3 rounded-lg focus:outline-none focus:border-amber-400 placeholder-gray-400 text-white"
-        />
+        <div className="relative">
+            <input
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            className="bg-gray-700 w-full border border-gray-600 p-3 rounded-lg focus:outline-none focus:border-amber-400 placeholder-gray-400 text-white pr-10"
+            />
+            <button
+            type="button"
+            onClick={handleShowPassword}
+            className="absolute top-1/2 right-3 transform -translate-y-1/2 text-xl text-gray-400 hover:text-white"
+            >
+            {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+            </button>
+        </div>
+
 
         <button
           type="submit"
-          className="bg-amber-400 hover:bg-amber-500 transition-all duration-300 p-3 rounded-xl text-gray-900 font-semibold shadow-md"
+          className="bg-amber-400 hover:bg-amber-500 transition-all duration-300 p-3 rounded-xl text-gray-900 font-semibold shadow-md cursor-pointer"
         >
           Register
         </button>
